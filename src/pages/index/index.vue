@@ -24,6 +24,7 @@
     </form>
 -->
     <div class="to-question-page">
+      <router-link to="/questionaire"> go </router-link>
       <a href="../question_page/main">去往问卷页面</a>
     </div>
 

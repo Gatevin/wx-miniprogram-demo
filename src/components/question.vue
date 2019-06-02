@@ -2,11 +2,11 @@
   <div>
     <div class="question">
       <p>{{question_description}}</p>
-      
-        <div v-for="(content, choice_id) in question_choices" v-bind:key="choice_id">
-          <input type="radio" :v-model="unique_select" :value=content> {{content}}
+      <radio-group>
+        <div v-for="(option, choice_id) in question_choices" v-bind:key="choice_id">
+          <input type="radio" :v-model="unique_select" :value=option> {{option}}
         </div>
-        
+      </radio-group>
     </div>
   </div>
 </template>
