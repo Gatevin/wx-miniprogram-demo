@@ -10,12 +10,14 @@
       </div>
     </div>
 
+<!--
     <div class="usermotto">
       <div class="user-motto">
         <card :text="motto"></card>
       </div>
     </div>
-
+    -->
+   <button class="to-question-page"  @click="goToQuestion">去往问卷页面</button>
 <!--
     <form class="form-container">
       <input type="text" class="form-control" :value="motto" placeholder="v-model" />
@@ -23,11 +25,8 @@
       <input type="text" class="form-control" v-model.lazy="motto" placeholder="v-model.lazy" />
     </form>
 -->
-    <div class="to-question-page">
-      <router-link to="/questionaire"> go </router-link>
-      <a href="../question_page/main">去往问卷页面</a>
-    </div>
-
+    <!-- <a href="/pages/counter/main" class="counter">去往Vuex示例页面</a> -->
+    
 <!--
     <div class="all">
         <div class="left">
@@ -45,9 +44,9 @@ import card from '@/components/card'
 export default {
   data () {
     return {
-      motto: 'Welcome!',
+      motto: 'user motto',
       userInfo: {
-        nickName: 'User_name',
+        nickName: 'User-nick-name',
         avatarUrl: 'http://mpvue.com/assets/logo.png'
       }
     }
@@ -69,6 +68,19 @@ export default {
     clickHandle (ev) {
       console.log('clickHandle:', ev)
       // throw {message: 'custom test'}
+    },
+    goToQuestion () {
+      // navigateTo, redirectTo 只能打开非 tabBar 页面
+      // switchTab 只能打开 tabBar 页面
+      // reLaunch 可以打开任意页面
+      // 页面底部的 tabBar 由页面决定，即只要是定义为 tabBar 的页面，底部都有 tabBar
+      // 调用页面路由带的参数可以在目标页面的onLoad中获取
+      const questionurl = '../question_page/main'
+      if (mpvuePlatform === 'wx') {
+        mpvue.switchTab({url: questionurl})
+      } else {
+        mpvue.navigateTo({url: questionurl})
+      }
     }
   },
 
@@ -97,12 +109,7 @@ export default {
 }
 
 .usermotto {
-  text-align: center;
   margin-top: 150px;
-}
-
-.to-question-page {
-  text-align:center
 }
 
 .form-control {

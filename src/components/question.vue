@@ -1,4 +1,5 @@
 <template>
+  <!-- 题卡的展示模块-->
   <div>
     <div class="question">
       <p>{{question_description}}</p>
